@@ -6,17 +6,18 @@ diskutil partitionDisk /dev/disk2 MBR FAT32 UNTITLED 0b
 
 2） 开启SSH
 
-在根目录下touch一个SSH文件
+在根目录/boot目录下touch一个SSH文件
 
 ```SHELL
+cd /boot
 touch SSH
 ```
 
 3）设置wifi
 
-当你没有网线的时候，就算开启了ssh连接，由于无法与电脑处于同一局域网，此时电脑也无法通过ssh连接树莓派，此时就需要在树莓派开启的时候先连接上wifi。同样的，首先在内存卡中的boot分区中新建一个wpa\_supplicant.conf的文件，并在里面写上树莓派的wifi配置命令。 
+当你没有网线的时候，就算开启了ssh连接，由于无法与电脑处于同一局域网，此时电脑也无法通过ssh连接树莓派，此时就需要在树莓派开启的时候先连接上wifi。配置/etc/wpa\_supplicant/wpa\_supplicant.conf 文件，并在里面写上树莓派的wifi配置命令。
 
-配置如下,其中shumeipai是wifi的ssid，8888888是wifi密码： 
+配置如下,其中shumeipai是wifi的ssid，8888888是wifi密码：
 
 ```SHELL
 country=CN
@@ -29,6 +30,15 @@ network={
     key_mgmt=WPA-PSK
     priority=1
 }
+```
+
+4\) 设置静态ip，修改/etc/dhcpcd.conf 文件，增加如下内容；
+
+```SHELL
+#####add by fantasy######
+interface wlan0
+static ip_address=10.0.0.25
+static routers=10.0.0.1
 ```
 
 
