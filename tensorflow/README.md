@@ -1,2 +1,2 @@
 # tech-stack
-# raspberry
+# tensorflow
