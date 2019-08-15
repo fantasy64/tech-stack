@@ -6,6 +6,6 @@
 * [raspberry](raspberry/README.md)
   * [树莓派](raspberry/shu-mei-pai.md)
   * [智能小车](raspberry/auto_drive.md)
-
+* [python知识](python_info.md)
 
 
