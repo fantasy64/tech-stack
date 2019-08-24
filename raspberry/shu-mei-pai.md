@@ -53,9 +53,9 @@ https://www.cnblogs.com/uestc-mm/p/7204429.html
 
 根据上面文章经验，主要进行如下修改：
 
-1） 修改config.txt
+a） 修改config.txt
 
-2）修改boot.txt
+b）修改boot.txt
 
 ```shell
 #没有修改前
@@ -75,5 +75,19 @@ uart = 1
 >ls -l /dev/seri*
 /dev/serial0 -> ttyAMA0
 /dev/serial1 -> ttyS0
+```
+
+
+
+6) 树莓派4B更新wiringPi 库
+
+```
+#update
+cd /tmp
+wget https://project-downloads.drogon.net/wiringpi-latest.deb
+sudo dpkg -i wiringpi-latest.deb
+
+#check and make sure it’s version 2.52 or later
+gpio -v
 ```
 
