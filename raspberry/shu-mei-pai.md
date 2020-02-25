@@ -53,9 +53,9 @@ https://www.cnblogs.com/uestc-mm/p/7204429.html
 
 根据上面文章经验，主要进行如下修改：
 
-1） 修改config.txt
+a） 修改/boot/config.txt
 
-2）修改boot.txt
+b）修改/boot/cmdline.txt
 
 ```shell
 #没有修改前
@@ -66,7 +66,7 @@ https://www.cnblogs.com/uestc-mm/p/7204429.html
 /dev/serial1 -> ttyS0
 ```
 
-从上面的结果来，串口的位置确实换了，但是并没有出现两个串口设备，我用树莓派4的板子，通过检查官方的系统在config.txt文件中多了一行“uart = 0” 猜测是吧串口关闭了，修改后打开串口
+从上面的结果来，串口的位置确实换了，但是并没有出现两个串口设备，我用树莓派4的板子，通过检查官方的系统在config.txt文件中多了一行“uart = 0” 猜测是把串口关闭了，修改后打开串口
 
 ```shell
 #这个配置会关闭硬件串口，需要改为如下：
@@ -77,3 +77,6 @@ uart = 1
 /dev/serial1 -> ttyS0
 ```
 
+
+
+6）
