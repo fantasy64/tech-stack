@@ -1,10 +1,10 @@
-1） 大于64G的sd卡处理，windows会默认格式化未exFat格式，树莓派识别不了，需要格式化成FAT32（mac）
+1) 大于64G的sd卡处理，windows会默认格式化未exFat格式，树莓派识别不了，需要格式化成FAT32（mac）
 
 ```SHELL
 diskutil partitionDisk /dev/disk2 MBR FAT32 UNTITLED 0b
 ```
 
-2） 开启SSH
+2) 开启SSH
 
 在根目录/boot目录下touch一个SSH文件
 
@@ -13,7 +13,7 @@ cd /boot
 touch SSH
 ```
 
-3）设置wifi
+3) 设置wifi
 
 当你没有网线的时候，就算开启了ssh连接，由于无法与电脑处于同一局域网，此时电脑也无法通过ssh连接树莓派，此时就需要在树莓派开启的时候先连接上wifi。配置/etc/wpa\_supplicant/wpa\_supplicant.conf 文件，并在里面写上树莓派的wifi配置命令。
 
@@ -32,7 +32,7 @@ network={
 }
 ```
 
-4\) 设置静态ip，修改/etc/dhcpcd.conf 文件，增加如下内容；
+4) 设置静态ip，修改/etc/dhcpcd.conf 文件，增加如下内容；
 
 ```SHELL
 #####add by fantasy######
@@ -53,9 +53,9 @@ https://www.cnblogs.com/uestc-mm/p/7204429.html
 
 根据上面文章经验，主要进行如下修改：
 
-a） 修改/boot/config.txt
+a） 修改config.txt
 
-b）修改/boot/cmdline.txt
+b）修改boot.txt
 
 ```shell
 #没有修改前
@@ -66,7 +66,7 @@ b）修改/boot/cmdline.txt
 /dev/serial1 -> ttyS0
 ```
 
-从上面的结果来，串口的位置确实换了，但是并没有出现两个串口设备，我用树莓派4的板子，通过检查官方的系统在config.txt文件中多了一行“uart = 0” 猜测是把串口关闭了，修改后打开串口
+从上面的结果来，串口的位置确实换了，但是并没有出现两个串口设备，我用树莓派4的板子，通过检查官方的系统在config.txt文件中多了一行“uart = 0” 猜测是吧串口关闭了，修改后打开串口
 
 ```shell
 #这个配置会关闭硬件串口，需要改为如下：
@@ -79,4 +79,15 @@ uart = 1
 
 
 
-6）
+6) 树莓派4B更新wiringPi 库
+
+```
+#update
+cd /tmp
+wget https://project-downloads.drogon.net/wiringpi-latest.deb
+sudo dpkg -i wiringpi-latest.deb
+
+#check and make sure it’s version 2.52 or later
+gpio -v
+```
+
